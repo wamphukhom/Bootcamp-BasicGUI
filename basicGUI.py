@@ -5,6 +5,7 @@ from tkinter import ttk, messagebox
 from datetime import datetime
 from turtle import stamp
 import csv
+import sqlite3
 #######################
 
 def fddate(thai=True):
@@ -65,7 +66,7 @@ def sumdata():
 
 GUI = Tk()
 GUI.geometry('500x800')
-GUI.title('โปรแกรม FMC')
+GUI.title('โปรแกรม FMC v.0.0.1')
 
 file = PhotoImage(file='matamask.png')
 IMG = Label(GUI,image=file)
@@ -106,8 +107,9 @@ def calculate(event=None):#none ฟังชั่นไหนต้องกา
     vvalue2.set('')
     E1.focus()
     
-
-B1 = ttk.Button(GUI, text='คำนวณ',command=calculate)
+s = ttk.Style()
+s.configure('my.TButton', font=('Angsana New', 20, 'bold'))
+B1 = ttk.Button(GUI, text='คำนวณ',command=calculate, style='my.TButton')
 B1.pack(ipadx=30, ipady=20, pady=10)
 
 E2.bind('<Return>', calculate)#enter ช่องที่ 2
@@ -120,7 +122,7 @@ def SummaryData(event=None):
 
 GUI.bind('<F1>',SummaryData)
 
-B2 = ttk.Button(GUI, text='รายงาน',command=SummaryData)
+B2 = ttk.Button(GUI, text='รายงาน',command=SummaryData, style='my.TButton')
 B2.pack(ipadx=30, ipady=20, pady=10)
 
 E1.focus()
